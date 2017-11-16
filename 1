@@ -56,7 +56,8 @@ class Index
 int diplotupo(int thesi,trie_node* node,char* final){
       if(strcmp(final,"Y")==0){
 	strcpy(node->children[thesi].is_final,final);
-	node->num_child--;}
+	node->num_child--;
+	}
       else{ cout<<"perasa apo dw"<<node->children[thesi].word<<endl;node->num_child--; return thesi;
 	}	
 
@@ -148,12 +149,14 @@ int diplotupo(int thesi,trie_node* node,char* final){
               if (found==0){	                                                                   //den exei paidi to paidi
 					thesi=insert_root(new_node,first,C,"Y");  
 					cout<<"new node "<<new_node->children[num_child].word<<"1"<<endl;
-					new_node->num_child++;
+					add_child(&new_node->children[new_node->num_child],C); 
+					 new_node->num_child++;
 					 print();                                     
 				return -1; }  
 	        
                else{                   	thesi=insert_root(new_node,first,C,"N");						//exei paidi  
 					last=word_new.substr(found+1).c_str();
+					add_child(&new_node->children[new_node->num_child],C); 
                                         int result=Insert_child(&new_node->children[thesi],last);
 			                new_node->num_child++;
                 			return 0;            
@@ -187,7 +190,7 @@ int diplotupo(int thesi,trie_node* node,char* final){
 					
 		 	}else{  
 	                                int thesi=insert_root(root, first, root->seats, "N");
-                                        add_child(&root->children[thesi],C);  
+                                        add_child(&root->children[thesi],K);  
 					last=word_new.substr (found+1).c_str();
 					cout<< "exei paidia " <<first << "last "<< last<<endl;
                                         int a=Insert_child(&root->children[thesi],last);
